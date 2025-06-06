@@ -34,3 +34,11 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 vim.opt.termguicolors = true
+
+-- No background. I.e. use the terminals's background
+vim.cmd [[
+  hi Normal guibg=NONE ctermbg=NONE
+  hi NormalNC guibg=NONE ctermbg=NONE
+  hi EndOfBuffer guibg=NONE ctermbg=NONE
+]]
+
