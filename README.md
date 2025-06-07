@@ -44,3 +44,17 @@ stow nvmin
 ``` bash
 stow ghostty
 ```
+
+# Podman
+Podman and podman-compose are installed when you run `installPacmanPackages.sh`, however, you need to specify a registry to be able to pull images.
+
+Edit `/etc/containers/registries.conf` as sudo.
+
+Change the following line:
+```
+#unqualified-search-registries = ["example.com"]
+```
+to
+```
+unqualified-search-registries = ["docker.io"]
+```
