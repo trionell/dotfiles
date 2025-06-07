@@ -1,33 +1,46 @@
-## Quick Setup script
-There is a quick setup script located in `/scripts/` called `quickSetup.sh`.
+# Quick Setup script
+## Arch packages
+### Pacman
+There is a quick setup script located in `/scripts/` called `installPacmanPackages.sh`.
 This sqript is for arch linux and will install my most commonly wanted packages, including the yay package manager.
 
-Make sure to run `quickSetup.sh` as root.
+### Yay
+Before installing any yay packages, you need to install yay, make sure `git base-devel` packages are install. If you have run `installPacmanPackages.sh` they should be installed.
 
-## Dotfiles
+Install yay using following commands:
+```
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+
+#### yay packages install script
+Run `installYayPackages.sh` to install packages from AUR.
+
+# Dotfiles
 The dotfiles are structured to be used with GNU Stow. Make sure `stow` is installed
 
-#### Known issues
-If you get an error regarding locales not being configured, you can run the following as a temporary sulution
+### Known issues
+If you get an error regarding locales not being configured, you can run the following as a temporary solution
 ```
 export LC_ALL=C.UTF-8
 export LC_ALL=C.UTF-8
 ```
 
-### Install stow packages
+## Install stow packages
 Run the following command to install all dotfiles
 
-#### Bash, Alias, OMP
+### Bash, Alias, OMP
 ``` bash
 stow 
 ```
 
-#### nvim
+### nvim
 ``` bash
 stow nvmin
 ```
 
-#### ghostty
+### ghostty
 ``` bash
 stow ghostty
 ```
