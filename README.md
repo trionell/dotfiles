@@ -1,10 +1,10 @@
 # Quick Setup script
-## Arch packages
-### Pacman
+# Arch packages
+## Pacman
 There is a quick setup script located in `/scripts/` called `installPacmanPackages.sh`.
 This sqript is for arch linux and will install my most commonly wanted packages, including the yay package manager.
 
-### Yay
+## Yay
 Before installing any yay packages, you need to install yay, make sure `git base-devel` packages are install. If you have run `installPacmanPackages.sh` they should be installed.
 
 Install yay using following commands:
@@ -58,3 +58,55 @@ to
 ```
 unqualified-search-registries = ["docker.io"]
 ```
+
+## Hibernation
+In order to enable hibernation, you need to have a suitable swap configured. If no swap options are available in KDE (or you get a swap related error when running `systemctl hubernate`) then do the following:
+
+Easiest is to create a swap file but a swap partition should work as well.
+
+### Hibernation/Swap file
+In order to enable hibernation there needs to be enough swap configured to fit the entire RAM. For a system with 32GB of ram I will create a 34GB swap file.
+
+1. **Allocate/create the file**
+    ```
+    sudo fallocate -l 34G /swapfile
+    ```
+2. **Write all zeros to the swap file**<br>
+    _Explanations_
+    * bs = block size. The example is set to 1 Megabyte
+    * count = 1024 (MB) * 34 (GB) = 34816
+    ```
+    sudo dd if=/dev/zero of=/swapfile bs=1M count=34816
+    ```
+3. **Set permission on swapfile**<br>
+    600 = read & write permission for owner group only
+    ```
+    sudo chmod 600 /swapfile
+    ```
+4. **Make swap**
+    ```
+    sudo mkswap /swapfile
+    ```
+5. **Enable swap on swapfile**
+    ```
+    sudo swapon /swapfile
+    ```
+6. **Validate entry of swapfile**
+    ```
+    swapon -s
+    ```
+    Output should contain:
+    ```
+    Filename                                Type            Size            Used            Priority
+    /swapfile                               file            35651580        0               -2
+    ```
+7. **Check if hibernate works**
+    Unless you are using BIOS instead of UEFI it should be working now. To check if hibernate is working, run `systemctl hibernate`.
+8. **Make swapfile available on boot**
+    The swapfile will not be enabled after a reboot. You need to add an entry to `/etc/fstab` in order for it to be auto registered.<br>
+    Add the following to the bottom of the file:
+    ```
+    # Swapfile
+    /swapfile   none    swap    defaults 0   0
+    ```
+    The swapfile should now be imediately available after boot. You can verify by rebooting and running the same command as in Step #6
