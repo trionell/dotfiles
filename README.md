@@ -60,7 +60,7 @@ unqualified-search-registries = ["docker.io"]
 ```
 
 ## Hibernation
-In order to enable hibernation, you need to have a suitable swap configured. If no swap options are available in KDE (or you get a swap related error when running `systemctl hubernate`) then do the following:
+In order to enable hibernation, you need to have a suitable swap configured. If no swap options are available in KDE (or you get a swap related error when running `systemctl hibernate`) then do the following:
 
 Easiest is to create a swap file but a swap partition should work as well.
 
@@ -83,15 +83,15 @@ In order to enable hibernation there needs to be enough swap configured to fit t
     ```
     sudo chmod 600 /swapfile
     ```
-4. **Make swap**
+4. **Make swap**<br>
     ```
     sudo mkswap /swapfile
     ```
-5. **Enable swap on swapfile**
+5. **Enable swap on swapfile**<br>
     ```
     sudo swapon /swapfile
     ```
-6. **Validate entry of swapfile**
+6. **Validate entry of swapfile**<br>
     ```
     swapon -s
     ```
@@ -100,13 +100,13 @@ In order to enable hibernation there needs to be enough swap configured to fit t
     Filename                                Type            Size            Used            Priority
     /swapfile                               file            35651580        0               -2
     ```
-7. **Check if hibernate works**
+7. **Check if hibernate works**<br>
     Unless you are using BIOS instead of UEFI it should be working now. To check if hibernate is working, run `systemctl hibernate`.
-8. **Make swapfile available on boot**
+8. **Make swapfile available on boot**<br>
     The swapfile will not be enabled after a reboot. You need to add an entry to `/etc/fstab` in order for it to be auto registered.<br>
     Add the following to the bottom of the file:
     ```
     # Swapfile
     /swapfile   none    swap    defaults 0   0
     ```
-    The swapfile should now be imediately available after boot. You can verify by rebooting and running the same command as in Step #6
+    The swapfile should now be immediately available after boot. You can verify by rebooting and running the same command as in Step #6
