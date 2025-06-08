@@ -9,7 +9,7 @@ vim.o.shiftwidth = 4
 
 -- Sync clipboard between OS and Neovim
 vim.schedule(function()
-    vim.o.clipboard = 'unnamedplus'
+    vim.opt.clipboard = 'unnamedplus'
 end)
 
 -- Save undo history
