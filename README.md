@@ -110,3 +110,24 @@ In order to enable hibernation there needs to be enough swap configured to fit t
     /swapfile   none    swap    defaults 0   0
     ```
     The swapfile should now be immediately available after boot. You can verify by rebooting and running the same command as in Step #6
+
+## Bluetooth
+Bluetooth kernel module is not installed by default. If you use Arch with KDE, then the following steps should be enough (taken from guide: https://wiki.archlinux.org/title/Bluetooth)
+1.  Install bluez packages (see guide above for details if interrested)
+    ```
+    sudo pacman -S bluez bluez-utils bluez-deprecated-tools
+    ```
+2.  Make sure bluetooth kernel module is loaded by running `lsmod`. The following line should be present in the output (numbers may be different)
+    ```
+    bluetooth            1097728  34 btrtl,btmtk,btintel,btbcm,btusb
+    ```
+    The important part (according to the arch wiki guide) is the presence of `btusb`
+3.  Start bluetooth service by running
+    ```
+    sudo systemctl start bluetooth.service
+    ```
+4.  Enable (start on boot/login) bluetooth service by running
+    ```
+    sudo systemctl enable bluetooth.service
+    ```
+Bluetooth should now work in KDE settings and the bluetooth icon in the system tray should be present/available.
