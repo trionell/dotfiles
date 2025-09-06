@@ -45,6 +45,11 @@ stow nvmin
 stow ghostty
 ```
 
+# Dual boot
+If you choose systemd-boot as your boot manager, just follow this guide: https://youtu.be/SqA7loOXPZw?si=u_RXse0rvbhcG60Z
+
+In its essence you just need to copy some files from windows boot partition to your Linux boot partition.
+
 # Podman
 Podman and podman-compose are installed when you run `installPacmanPackages.sh`, however, you need to specify a registry to be able to pull images.
 
