@@ -136,3 +136,18 @@ Bluetooth kernel module is not installed by default. If you use Arch with KDE, t
     sudo systemctl enable bluetooth.service
     ```
 Bluetooth should now work in KDE settings and the bluetooth icon in the system tray should be present/available.
+
+## Ghostty
+Due to Ghossty being a fairly new terminal, there is high likelyhood that remote server does not have Ghostty's terminfo entry, meaning when you ssh to remote servers you will have a bad time. Follow this guide on how to fix it: https://ghostty.org/docs/help/terminfo#ssh
+
+TL;DR:
+1. Add ghostty's terminfo on a remove machine by running the following command from your machine:
+    ```
+    infocmp -x xterm-ghostty | ssh YOUR-SERVER -- tic -x -
+    ```
+2. If you still have issues (some might be fixed with #1 but other may remain), add the following to your `.ssg/config` file for the entry for the remote machine you are trying to fix:
+    ```
+    # .ssh/config
+    Host example.com
+        SetEnv TERM=xterm-256color
+    ```
