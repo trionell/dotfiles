@@ -42,7 +42,7 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = tokyonight_night
+theme = TokyoNight Night
 background-opacity = 0.7
 background-blur = 5
 font-family = "JetBrainsMono Nerd Font Mono"
