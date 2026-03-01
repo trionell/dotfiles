@@ -1,34 +1,33 @@
 <scheme name="Visual Studio" version="142" parent_scheme="Default">
-  <option name="FONT_SCALE" value="1.0" />
+  <option name="FONT_SCALE" value="1.5" />
   <metaInfo>
-    <property name="created">2020-11-12T19:30:36</property>
-    <property name="ide">Idea</property>
-    <property name="ideVersion">2020.2.3.0.0</property>
-    <property name="modified">2020-11-12T19:30:52</property>
+    <property name="ide">idea</property>
+    <property name="ideVersion">2025.3.2.0.0</property>
     <property name="originalScheme">Visual Studio</property>
   </metaInfo>
   <option name="LINE_SPACING" value="1.2" />
-  <option name="EDITOR_FONT_SIZE" value="17" />
+  <option name="EDITOR_FONT_SIZE" value="26" />
   <option name="EDITOR_FONT_NAME" value="Consolas" />
   <option name="CONSOLE_FONT_NAME" value="Consolas" />
-  <option name="CONSOLE_FONT_SIZE" value="12" />
+  <option name="CONSOLE_FONT_SIZE" value="18" />
   <option name="CONSOLE_LINE_SPACING" value="1.0" />
   <colors>
     <option name="ADDED_LINES_COLOR" value="577430" />
-    <option name="CARET_COLOR" value="ffffff" />
-    <option name="CARET_ROW_COLOR" value="f0f0f" />
+    <option name="CARET_COLOR" value="FFFFFF" />
+    <option name="CARET_ROW_COLOR" value="0F0F0F" />
     <option name="CONSOLE_BACKGROUND_KEY" value="" />
-    <option name="DELETED_LINES_COLOR" value="eff284" />
-    <option name="DOCUMENTATION_COLOR" value="3c3f41" />
-    <option name="FILESTATUS_ADDED" value="a8a00" />
-    <option name="FILESTATUS_MODIFIED" value="7acc" />
+    <option name="DELETED_LINES_COLOR" value="EFF284" />
+    <option name="DOCUMENTATION_COLOR" value="3C3F41" />
+    <option name="FILESTATUS_ADDED" value="0A8A00" />
+    <option name="FILESTATUS_MODIFIED" value="007ACC" />
     <option name="FILESTATUS_UNKNOWN" value="" />
-    <option name="GUTTER_BACKGROUND" value="1e1e1e" />
-    <option name="LINE_NUMBERS_COLOR" value="2b91af" />
-    <option name="MODIFIED_LINES_COLOR" value="eff284" />
+    <option name="GUTTER_BACKGROUND" value="1E1E1E" />
+    <option name="LINE_NUMBERS_COLOR" value="2B91AF" />
+    <option name="LOOKUP_COLOR" value="" />
+    <option name="MODIFIED_LINES_COLOR" value="EFF284" />
     <option name="RIGHT_MARGIN_COLOR" value="151404" />
     <option name="SELECTION_FOREGROUND" value="" />
-    <option name="WHITESPACES_MODIFIED_LINES_COLOR" value="eff284" />
+    <option name="WHITESPACES_MODIFIED_LINES_COLOR" value="EFF284" />
   </colors>
   <attributes>
     <option name="ANNOTATION_NAME_ATTRIBUTES">
@@ -287,6 +286,12 @@
       <value>
         <option name="BACKGROUND" value="355d39" />
         <option name="ERROR_STRIPE_COLOR" value="26de42" />
+      </value>
+    </option>
+    <option name="DIFF_MODIFIED">
+      <value>
+        <option name="BACKGROUND" value="484f6a" />
+        <option name="ERROR_STRIPE_COLOR" value="b8cbf5" />
       </value>
     </option>
     <option name="DUPLICATE_FROM_SERVER">
