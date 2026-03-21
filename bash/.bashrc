@@ -19,3 +19,12 @@ export LC_ALL=en_US.UTF-8
 
 # Oh-my-posh
 eval "$(oh-my-posh init bash --config ~/.illusi0n.omp.json)"
+
+# Yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
