@@ -1,5 +1,6 @@
 #! /bin/bash
 
+alias ..='cd ..'
 alias ll='eza -lah'
 alias gs='git status'
 alias mvni='mvn clean install'
