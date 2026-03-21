@@ -1,6 +1,6 @@
 #! /bin/bash
 
-alias ll='ls -la --color=auto'
+alias ll='eza -lah'
 alias gs='git status'
 alias mvni='mvn clean install'
 alias vim='nvim'
@@ -8,3 +8,5 @@ alias gs='git status'
 alias mvni='mvn clean install'
 alias brSpring='mvn clean install && (cd app && mvn spring-boot:run)'
 alias lg='lazygit'
+alias editalias='vim ~/.alias && source ~/.bashrc'
+alias editrc='vim ~/.bashrc && source ~/.bashrc'
