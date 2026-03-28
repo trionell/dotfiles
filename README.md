@@ -2,7 +2,7 @@
 # Arch packages
 ## Pacman
 There is a quick setup script located in `/scripts/` called `installPacmanPackages.sh`.
-This sqript is for arch linux and will install my most commonly wanted packages, including the yay package manager.
+This script is for arch linux and will install my most commonly wanted packages, including the yay package manager.
 
 ## Yay
 Before installing any yay packages, you need to install yay, make sure `git base-devel` packages are install. If you have run `installPacmanPackages.sh` they should be installed.
@@ -32,7 +32,7 @@ Run the following command to install all dotfiles
 
 ### Bash, Alias, OMP
 ``` bash
-stow 
+stow bash
 ```
 
 ### nvim
@@ -43,6 +43,34 @@ stow nvmin
 ### ghostty
 ``` bash
 stow ghostty
+```
+
+## .gitconfig
+The full `.gitconfig` is not included in the repo in order to not expose my email address.
+Append the following to ~/.gitconfig to add my config
+```
+[core]
+    editor = vim
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true     # Use n and N to move between diff sections
+    side-by-side = true
+
+    # delta detects terminal colors automatically; set one of these to disable auto-detection
+    # dark = true
+    # light = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
 ```
 
 # Dual boot
