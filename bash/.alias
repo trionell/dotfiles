@@ -13,3 +13,4 @@ alias lg='lazygit'
 alias editalias='vim ~/.alias && source ~/.bashrc'
 alias editrc='vim ~/.bashrc && source ~/.bashrc'
 alias cat='bat'
+alias yays="yay -Slq | fzf --preview 'yay -Si {}' --height=97% --layout=reverse --bind 'enter:execute(yay -Si {} | less)'"
