@@ -1,5 +1,6 @@
 require("statusline")
 require("keymaps")
+require("plugins")
 
 -- =======================================================================
 -- OPTIONS

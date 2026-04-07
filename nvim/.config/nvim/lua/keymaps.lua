@@ -30,6 +30,13 @@ vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" }
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
+-- LSP related keymaps
+vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover text" })
+vim.keymap.set("n", "C-k", vim.lsp.buf.signature_help, { desc = "Show signature" })
+
 -- ==============================================
 -- AUTOCMDS
 -- ==============================================
