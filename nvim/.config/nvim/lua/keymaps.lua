@@ -37,6 +37,9 @@ vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, { desc = "Go to im
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover text" })
 vim.keymap.set("n", "C-k", vim.lsp.buf.signature_help, { desc = "Show signature" })
 
+-- Neo-tree
+vim.keymap.set("n", "<leader>e", "<Cmd>Neotree<CR>", { desc = "Open Neo-tree" })
+
 -- ==============================================
 -- AUTOCMDS
 -- ==============================================
