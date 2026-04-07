@@ -14,8 +14,14 @@ vim.pack.add({
   },
   'https://github.com/MunifTanjim/nui.nvim',
   'https://github.com/folke/snacks.nvim',
+  -- Vscode color scheme
+  'https://github.com/Mofiqul/vscode.nvim',
 })
 
+-- Enable plugins
+require("plugins.tiny-inline-diagnostic")
+
+-- Mason / LSPs
 require("mason").setup()
 
 vim.lsp.enable("lua_ls")
@@ -46,5 +52,22 @@ require("neo-tree").setup({
       },
     }
   },
-  close_if_last_windows = true,
+  close_if_last_window = true,
 })
+
+-- vscode color scheme
+local c = require("vscode.colors").get_colors()
+require("vscode").setup({
+  transparent = true,
+  underline_links = true,
+  disable_nvimtree_bg = true,
+  terminal_colors = true,
+  -- Override highlight groups (see ./lua/vscode/theme.lua)
+  group_overrides = {
+    -- this supports the same val table as vim.api.nvim_set_hl
+    -- use colors from this colorscheme by requiring vscode.colors!
+    Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
+  }
+})
+
+vim.cmd.colorscheme "vscode"
