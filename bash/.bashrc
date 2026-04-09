@@ -29,6 +29,8 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+export EDITOR="nvim"
+
 # --- fzf ---
 eval "$(fzf --bash)"
 
