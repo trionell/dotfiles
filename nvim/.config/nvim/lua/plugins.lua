@@ -37,7 +37,12 @@ require("mason").setup()
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("jdtls")
 
--- Telescope keymaps
+-- Telescope
+require('telescope').setup({
+  defaults = {
+    path_display = { shorten = { len = 2, exclude = { -1 } } },
+  },
+})
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
