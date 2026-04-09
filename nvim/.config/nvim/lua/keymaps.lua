@@ -39,7 +39,7 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover text" })
 vim.keymap.set("n", "C-k", vim.lsp.buf.signature_help, { desc = "Show signature" })
 
 -- Neo-tree
-vim.keymap.set("n", "<leader>e", "<Cmd>Neotree<CR>", { desc = "Open Neo-tree" })
+vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
 
 -- ==============================================
 -- AUTOCMDS
