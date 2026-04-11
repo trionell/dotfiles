@@ -51,6 +51,7 @@ vim.o.smartcase = true
 vim.o.inccommand = "split"              -- Preview substitutions live, as you type
 vim.o.cursorline = true                 -- Show which line the cursor is on
 vim.o.scrolloff = 10                    -- Minimal number of screen lines to keep above and below the cursor
+vim.opt.signcolumn = "yes"              -- Always show sign column (for git diff, diagnostics)
 
 vim.opt.guicursor =
 	"n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175" -- cursor blinking and settings

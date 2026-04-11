@@ -21,6 +21,18 @@ vim.pack.add({
 -- Enable plugins
 require("plugins.tiny-inline-diagnostic")
 require("mini.completion").setup()
+require("mini.diff").setup({
+  view = {
+    style = 'sign',
+    signs = { add = '+', change = '~', delete = '-' },
+  },
+})
+-- jdtls sets buftype=nofile for Java buffers, which mini.diff skips by default
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "java",
+  callback = function(ev) MiniDiff.enable(ev.buf) end,
+})
+
 vim.o.completeopt = "menu,menuone,noinsert"
 
 -- Confirm completion with <Tab> or <CR>; behave normally when menu is closed
@@ -86,3 +98,8 @@ require("vscode").setup({
 })
 
 vim.cmd.colorscheme "vscode"
+
+-- Git diff sign colors (for mini.diff)
+vim.api.nvim_set_hl(0, "MiniDiffSignAdd",    { fg = "#4ec994" })
+vim.api.nvim_set_hl(0, "MiniDiffSignChange", { fg = "#dcdcaa" })
+vim.api.nvim_set_hl(0, "MiniDiffSignDelete", { fg = "#f44747" })
