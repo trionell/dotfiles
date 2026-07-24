@@ -73,3 +73,10 @@ _fzf_comprun() {
 # --- bat ---
 export BAT_THEME="Visual Studio Dark+"
 
+# --- uv ---
+export PATH="/home/gustav/.local/bin:$PATH"
+
+# --- Tmux ---
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
