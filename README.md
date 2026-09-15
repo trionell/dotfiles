@@ -1,13 +1,18 @@
 # Quick Setup script
+
 # Arch packages
+
 ## Pacman
+
 There is a quick setup script located in `/scripts/` called `installPacmanPackages.sh`.
 This script is for arch linux and will install my most commonly wanted packages, including the yay package manager.
 
 ## Yay
+
 Before installing any yay packages, you need to install yay, make sure `git base-devel` packages are install. If you have run `installPacmanPackages.sh` they should be installed.
 
 Install yay using following commands:
+
 ```
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -15,39 +20,49 @@ makepkg -si
 ```
 
 #### yay packages install script
+
 Run `installYayPackages.sh` to install packages from AUR.
 
 # Dotfiles
+
 The dotfiles are structured to be used with GNU Stow. Make sure `stow` is installed
 
 ### Known issues
+
 If you get an error regarding locales not being configured, you can run the following as a temporary solution
+
 ```
 export LC_ALL=C.UTF-8
 export LC_ALL=C.UTF-8
 ```
 
 ## Install stow packages
+
 Run the following command to install all dotfiles
 
 ### Bash, Alias, OMP
-``` bash
+
+```bash
 stow bash
 ```
 
 ### nvim
-``` bash
+
+```bash
 stow nvmin
 ```
 
 ### ghostty
-``` bash
+
+```bash
 stow ghostty
 ```
 
 ## .gitconfig
+
 The full `.gitconfig` is not included in the repo in order to not expose my email address.
 Append the following to ~/.gitconfig to add my config
+
 ```
 [core]
     editor = vim
@@ -74,78 +89,87 @@ Append the following to ~/.gitconfig to add my config
 ```
 
 # Dual boot
+
 If you choose systemd-boot as your boot manager, just follow this guide: https://youtu.be/SqA7loOXPZw?si=u_RXse0rvbhcG60Z
 
 In its essence you just need to copy some files from windows boot partition to your Linux boot partition.
 
 # Podman
+
 Podman and podman-compose are installed when you run `installPacmanPackages.sh`, however, you need to specify a registry to be able to pull images.
 
 Edit `/etc/containers/registries.conf` as sudo.
 
 Change the following line:
+
 ```
 #unqualified-search-registries = ["example.com"]
 ```
+
 to
+
 ```
 unqualified-search-registries = ["docker.io"]
 ```
 
 ## Hibernation
+
 In order to enable hibernation, you need to have a suitable swap configured. If no swap options are available in KDE (or you get a swap related error when running `systemctl hibernate`) then do the following:
 
 Easiest is to create a swap file but a swap partition should work as well.
 
 ### Hibernation/Swap file
+
 In order to enable hibernation there needs to be enough swap configured to fit the entire RAM. For a system with 32GB of ram I will create a 34GB swap file.
 
 1. **Allocate/create the file**
-    ```
-    sudo fallocate -l 34G /swapfile
-    ```
+   ```
+   sudo fallocate -l 34G /swapfile
+   ```
 2. **Write all zeros to the swap file**<br>
-    _Explanations_
-    * bs = block size. The example is set to 1 Megabyte
-    * count = 1024 (MB) * 34 (GB) = 34816
-    ```
-    sudo dd if=/dev/zero of=/swapfile bs=1M count=34816
-    ```
+   _Explanations_
+   - bs = block size. The example is set to 1 Megabyte
+   - count = 1024 (MB) \* 34 (GB) = 34816
+   ```
+   sudo dd if=/dev/zero of=/swapfile bs=1M count=34816
+   ```
 3. **Set permission on swapfile**<br>
-    600 = read & write permission for owner group only
-    ```
-    sudo chmod 600 /swapfile
-    ```
+   600 = read & write permission for owner group only
+   ```
+   sudo chmod 600 /swapfile
+   ```
 4. **Make swap**<br>
-    ```
-    sudo mkswap /swapfile
-    ```
+   ```
+   sudo mkswap /swapfile
+   ```
 5. **Enable swap on swapfile**<br>
-    ```
-    sudo swapon /swapfile
-    ```
+   ```
+   sudo swapon /swapfile
+   ```
 6. **Validate entry of swapfile**<br>
-    ```
-    swapon -s
-    ```
-    Output should contain:
-    ```
-    Filename                                Type            Size            Used            Priority
-    /swapfile                               file            35651580        0               -2
-    ```
+   ```
+   swapon -s
+   ```
+   Output should contain:
+   ```
+   Filename                                Type            Size            Used            Priority
+   /swapfile                               file            35651580        0               -2
+   ```
 7. **Check if hibernate works**<br>
-    Unless you are using BIOS instead of UEFI it should be working now. To check if hibernate is working, run `systemctl hibernate`.
+   Unless you are using BIOS instead of UEFI it should be working now. To check if hibernate is working, run `systemctl hibernate`.
 8. **Make swapfile available on boot**<br>
-    The swapfile will not be enabled after a reboot. You need to add an entry to `/etc/fstab` in order for it to be auto registered.<br>
-    Add the following to the bottom of the file:
-    ```
-    # Swapfile
-    /swapfile   none    swap    defaults 0   0
-    ```
-    The swapfile should now be immediately available after boot. You can verify by rebooting and running the same command as in Step #6
+   The swapfile will not be enabled after a reboot. You need to add an entry to `/etc/fstab` in order for it to be auto registered.<br>
+   Add the following to the bottom of the file:
+   ```
+   # Swapfile
+   /swapfile   none    swap    defaults 0   0
+   ```
+   The swapfile should now be immediately available after boot. You can verify by rebooting and running the same command as in Step #6
 
 ## Bluetooth
+
 Bluetooth kernel module is not installed by default. If you use Arch with KDE, then the following steps should be enough (taken from guide: https://wiki.archlinux.org/title/Bluetooth)
+
 1.  Install bluez packages (see guide above for details if interrested)
     ```
     sudo pacman -S bluez bluez-utils bluez-deprecated-tools
@@ -160,22 +184,56 @@ Bluetooth kernel module is not installed by default. If you use Arch with KDE, t
     sudo systemctl start bluetooth.service
     ```
 4.  Enable (start on boot/login) bluetooth service by running
-    ```
-    sudo systemctl enable bluetooth.service
-    ```
-Bluetooth should now work in KDE settings and the bluetooth icon in the system tray should be present/available.
+    `     sudo systemctl enable bluetooth.service
+    `
+    Bluetooth should now work in KDE settings and the bluetooth icon in the system tray should be present/available.
 
 ## Ghostty
+
 Due to Ghossty being a fairly new terminal, there is high likelyhood that remote server does not have Ghostty's terminfo entry, meaning when you ssh to remote servers you will have a bad time. Follow this guide on how to fix it: https://ghostty.org/docs/help/terminfo#ssh
 
 TL;DR:
+
 1. Add ghostty's terminfo on a remove machine by running the following command from your machine:
-    ```
-    infocmp -x xterm-ghostty | ssh YOUR-SERVER -- tic -x -
-    ```
+   ```
+   infocmp -x xterm-ghostty | ssh YOUR-SERVER -- tic -x -
+   ```
 2. If you still have issues (some might be fixed with #1 but other may remain), add the following to your `.ssg/config` file for the entry for the remote machine you are trying to fix:
-    ```
-    # .ssh/config
-    Host example.com
-        SetEnv TERM=xterm-256color
-    ```
+   ```
+   # .ssh/config
+   Host example.com
+       SetEnv TERM=xterm-256color
+   ```
+
+## Plymouth
+
+Plymouth is used to get a "pretty" boot screen. Default Arch just gives you the logs in a terminal. Plymouth gives you a more standard looking boot screen. Plymouth is the de-facto tool for this.
+
+1. Install plymouth
+
+```
+sudo pacman -S plymouth
+```
+
+2. Run plymouth on boot by adding it to the mkinitcpio hooks. File located at `/etc/mkinitcpio.conf`. Add `plymouth` to the `HOOKS` string. Put it after `base udev`. Order matters. Example file:
+
+```
+HOOKS=(base udev plymouth autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck resume)
+```
+
+3. Add plymouth to the bootloader. Available bootloaders ar located at `/boot/loader/entries/`. The file can have different kinds of names but it should end in `.conf` and contain a row starting with `options root=`. Append the following to the end of that line: `quiet splash loglevel=3 vt.global_cursor_default=0`. It should look something like:
+
+```
+# Created by: archinstall
+# Created on: 2025-06-06_20-35-57
+title   Arch Linux (linux)
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options root=PARTUUID=29655214-4549-4447-8e39-410af874db73 zswap.enabled=0 rw rootfstype=ext4 quiet splash loglevel=3 vt.global_cursor_default=0
+```
+
+4. Set a theme. Use `plymouth-set-default-theme -l` to list available themes. Use `sudo plymouth-set-default-theme -R <theme>` to set the theme. `bgrt` is a good default theme (and is the default for many distros).
+5. Rebuild initramfs with `sudo mkinitcpio -P`
+6. Computers on Nvidia GPUs may need to set a KMS (kernel mode setting) to avoid flickering. This is due to the screen resolution is not properly set on boot. The fix is to set the screen resulution early in the boot process. Since I have not had this issue yet I have not tried any fix for it. This is mostly a headsup. This part should be updated when/if a fix has been identified
+
+To change the theme, repeat step #4 and #5.
