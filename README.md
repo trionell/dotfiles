@@ -215,7 +215,7 @@ Plymouth is used to get a "pretty" boot screen. Default Arch just gives you the 
 sudo pacman -S plymouth
 ```
 
-2. Run plymouth on boot by adding it to the mkinitcpio hooks. File located at `/etc/mkinitcpio.conf`. Add `plymouth` to the `HOOKS` string. Put it after `base udev`. Order matters. Example file:
+2. Run plymouth on boot by adding it to the mkinitcpio hooks. File located at `/etc/mkinitcpio.conf`. Add `plymouth` to the `HOOKS` string. Put it after `base udev`. If `systemd` is present, place `plymouth` after. Order matters. Example file:
 
 ```
 HOOKS=(base udev plymouth autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck resume)
